@@ -4,6 +4,7 @@ import static com.utils.ElementUtils.*;
 
 import com.constants.AppPackages;
 import com.pages.APIDemoPage;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class ElementStrategyTest extends BaseTest {
 
-    @Test(priority = 0)
+    @Test()
     public void appNameHeaderTest() {
         Assert.assertEquals(new APIDemoPage().getTextView().getText(), "API Demos");
     }
@@ -28,7 +29,11 @@ public class ElementStrategyTest extends BaseTest {
         new APIDemoPage().getTextViews()
                 .stream().map(WebElement::getText)
                 .forEach(actualMenuList::add);
-        Assert.assertEquals(actualMenuList, expectedMenuList);
+        Assertions.assertThat(actualMenuList)
+                .hasSizeBetween(10, 15)
+                .isEqualTo(expectedMenuList)
+                .contains("Accessibility")
+                .isNotEmpty();
     }
 
     @Test(priority = 2)
@@ -45,7 +50,10 @@ public class ElementStrategyTest extends BaseTest {
         page.getListDialogMenu().click();
         Thread.sleep(1000);
         page.commandTwoMenu().click();
-        Assert.assertEquals(page.messageText(), "You selected: 1 , Command two");
+        Assertions.assertThat(page.messageText())
+                .isNotEmpty()
+                .containsWhitespaces()
+                .isEqualTo("You selected: 1 , Command two");
     }
 
     @Test(priority = 4)
