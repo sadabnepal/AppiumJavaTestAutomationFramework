@@ -3,6 +3,7 @@ package com.tests;
 import static com.utils.ElementUtils.*;
 
 import com.constants.AppPackages;
+import com.pages.APIDemoPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,17 +16,16 @@ public class ElementStrategyTest extends BaseTest {
 
     @Test(priority = 0)
     public void appNameHeaderTest() {
-        String actualHeader = driver.findElementByXPath("//android.widget.TextView").getText();
-        Assert.assertEquals(actualHeader, "API Demos");
+        Assert.assertEquals(new APIDemoPage().getTextView().getText(), "API Demos");
     }
 
     @Test(priority = 1)
     public void allMenuNamesTest() {
-        String[] list = {"API Demos", "Accessibility", "Animation", "App", "Content", "Graphics", "Media", "NFC", "OS", "Preference", "Text", "Views"};
+        String[] list = {"API Demos", "Access'ibility", "Accessibility", "Animation", "App", "Content", "Graphics", "Media", "NFC", "OS", "Preference", "Text", "Views"};
         List<String> expectedMenuList = Arrays.asList(list);
 
         List<String> actualMenuList = new ArrayList<>();
-        driver.findElementsByCssSelector(".android.widget.TextView")
+        new APIDemoPage().getTextViews()
                 .stream().map(WebElement::getText)
                 .forEach(actualMenuList::add);
         Assert.assertEquals(actualMenuList, expectedMenuList);
@@ -33,17 +33,19 @@ public class ElementStrategyTest extends BaseTest {
 
     @Test(priority = 2)
     public void viewMenuNavigationTest() {
-        driver.findElementByAccessibilityId("Views").click();
+        APIDemoPage page = new APIDemoPage();
+        page.getViewMenu().click();
+        Assert.assertTrue(page.getAnimationMenu().isDisplayed());
     }
 
     @Test(priority = 3)
     public void openMenuUsingAppActivityTest() throws InterruptedException {
+        APIDemoPage page = new APIDemoPage();
         openAppUsingPackage(AppPackages.ALERT_DIALOGUE);
-        driver.findElementByXPath("//*[@content-desc='List dialog']").click();
+        page.getListDialogMenu().click();
         Thread.sleep(1000);
-        driver.findElementByXPath("//*[@text='Command two']").click();
-        String actualText = driver.findElementByXPath("//*[@resource-id='android:id/message']").getText();
-        Assert.assertEquals(actualText, "You selected: 1 , Command two");
+        page.commandTwoMenu().click();
+        Assert.assertEquals(page.messageText(), "You selected: 1 , Command two");
     }
 
     @Test(priority = 4)
@@ -55,10 +57,11 @@ public class ElementStrategyTest extends BaseTest {
 
     @Test(priority = 5)
     public void scrollElementTest() {
+        APIDemoPage page = new APIDemoPage();
         openAppUsingPackage(AppPackages.LANDING_PAGE);
-        findElementByText("Views").click();
+        page.getViewMenu().click();
         scrollAndFindElementByText("ScrollBars").click();
-        Assert.assertTrue(driver.findElementByAccessibilityId("1. Basic").isDisplayed());
+        Assert.assertTrue(page.getBasicMenu().isDisplayed());
     }
 
 }
