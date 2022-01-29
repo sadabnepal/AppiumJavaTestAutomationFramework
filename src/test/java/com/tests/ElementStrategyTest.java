@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class ElementStrategyTest extends BaseTest {
 
     @Test(priority = 0)
@@ -36,19 +35,19 @@ public class ElementStrategyTest extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void openMenuUsingAppActivityTest() {
+    public void openMenuUsingAppActivityTest() throws InterruptedException {
         openAppUsingPackage(AppPackages.ALERT_DIALOGUE);
         driver.findElementByXPath("//*[@content-desc='List dialog']").click();
-        waitForElementTobeClickable(driver.findElementByXPath("//*[@text='Command two']")).click();
-        String actualText  = driver.findElementByXPath("//*[@resource-id='android:id/message']").getText();
+        Thread.sleep(1000);
+        driver.findElementByXPath("//*[@text='Command two']").click();
+        String actualText = driver.findElementByXPath("//*[@resource-id='android:id/message']").getText();
         Assert.assertEquals(actualText, "You selected: 1 , Command two");
     }
 
     @Test(priority = 4)
     public void findElementByUIAutomatorTest() {
         openAppUsingPackage(AppPackages.LANDING_PAGE);
-        waitForElementTobeClickable(findElementByText("App"));
-        findElementByText("App").click();
+        waitForElementTobeClickable(findElementByText("App")).click();
         Assert.assertTrue(findElementByText("Action Bar").isDisplayed());
     }
 
