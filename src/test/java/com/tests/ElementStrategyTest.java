@@ -1,5 +1,7 @@
 package com.tests;
 
+import static com.utils.ElementUtils.*;
+
 import com.constants.AppPackages;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

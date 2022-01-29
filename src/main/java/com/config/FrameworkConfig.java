@@ -8,5 +8,7 @@ public interface FrameworkConfig extends Config {
 
     String baseurl();
     String port();
+    String DeviceName();
+    String platformVersion();
 
 }

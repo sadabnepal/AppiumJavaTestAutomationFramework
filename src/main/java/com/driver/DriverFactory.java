@@ -16,19 +16,20 @@ import java.net.URL;
 public class DriverFactory {
 
     private static final FrameworkConfig config = ConfigFactory.create(FrameworkConfig.class);
+    public static AndroidDriver<WebElement> driver;
 
     public static AndroidDriver<WebElement> getDriver() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.APP, PathConstants.APPLICATION_PATH);
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, config.DeviceName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, config.platformVersion());
         try {
-            return new AndroidDriver<>(new URL(config.baseurl() + ":" + config.port()), capabilities);
+            driver = new AndroidDriver<>(new URL(config.baseurl() + ":" + config.port()), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return null;
+        return driver;
     }
 }
