@@ -14,6 +14,7 @@ public class MobileGestureTest extends BaseTest {
 
     @Test(priority = 6)
     public void tapAndLongPressTest() {
+        openAppUsingPackage(AppPackages.LANDING_PAGE);
         APIDemoPage page = new APIDemoPage();
         tapOnElement(page.getViewMenu());
         AndroidElement expandableListsMenu = page.getExpandableListMenu();
