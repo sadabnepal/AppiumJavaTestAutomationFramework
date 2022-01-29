@@ -13,8 +13,8 @@
 
 #### Clone repository:
 ```bash
-git clone https://github.com/sadabnepal/AppiumJavaTestAutomationFramework.git
-Navigate to `AppiumJavaTestAutomationFramework`
+git clone https://github.com/sadabnepal/AppiumJavaTestNGFramework.git
+Navigate to `AppiumJavaTestNGFramework`
 ```
 #### Setup/Create virtual device on Android studio:
 ```
