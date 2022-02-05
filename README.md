@@ -18,9 +18,7 @@ Navigate to `AppiumJavaTestNGFramework`
 ```
 #### Setup/Create virtual device on Android studio:
 ```
-platformName: Android
-platformVersion: 11
-deviceName: Pixel 3
+Android : Pixel 3 [version 11]
 ```
 #### Install
 ```
@@ -46,3 +44,19 @@ npm run android-doctor
 ```
 all options should be green checked as shown in below image to start.
 ![android_config.png](sample/android_config.png)
+
+
+#### Update properties file
+File path: src/test/resources/configs/config.properties
+```
+bs_user=<BROWSERSTACK_USER>
+bs_key=<BROWSERSTACK_KEY>
+bs_deviceName=<DEVICE NAME>
+bs_platformVersion=<DEVICE Version>
+bs_app=<BROWSERSTACK_APP_PATH>
+```
+
+### Run Tests
+```
+Right click on testng.xml file --> click on 'Run testng.xml'
+```
