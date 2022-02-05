@@ -1,6 +1,6 @@
 package com.pages;
 
-import io.appium.java_client.android.AndroidElement;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -10,27 +10,27 @@ public class APIDemoPage {
 
     private final String textView = "//android.widget.TextView";
 
-    public AndroidElement getTextView() {
+    public WebElement getTextView() {
         return findByXpath(textView);
     }
 
-    public List<AndroidElement> getTextViews() {
+    public List<WebElement> getTextViews() {
         return findElementsByXpath(textView);
     }
 
-    public AndroidElement getViewMenu() {
+    public WebElement getViewMenu() {
         return findByAccessibilityId("Views");
     }
 
-    public AndroidElement getAnimationMenu() {
+    public WebElement getAnimationMenu() {
         return findByAccessibilityId("Animation");
     }
 
-    public AndroidElement getListDialogMenu() {
+    public WebElement getListDialogMenu() {
         return findByXpath("//*[@content-desc='List dialog']");
     }
 
-    public AndroidElement commandTwoMenu() {
+    public WebElement commandTwoMenu() {
         return findByXpath("//*[@text='Command two']");
     }
 
@@ -38,39 +38,39 @@ public class APIDemoPage {
         return findByXpath("//*[@resource-id='android:id/message']").getText();
     }
 
-    public AndroidElement getBasicMenu() {
+    public WebElement getBasicMenu() {
         return findByAccessibilityId("1. Basic");
     }
 
-    public AndroidElement getExpandableListMenu() {
+    public WebElement getExpandableListMenu() {
         return findByAccessibilityId("Expandable Lists");
     }
 
-    public AndroidElement getCustomerAdaptorMenu() {
+    public WebElement getCustomerAdaptorMenu() {
         return findByAccessibilityId("1. Custom Adapter");
     }
 
-    public AndroidElement getPeopleNamesMenu() {
+    public WebElement getPeopleNamesMenu() {
         return findByXpath("//*[@text='People Names']");
     }
 
-    public AndroidElement getSampleActionPopup() {
+    public WebElement getSampleActionPopup() {
         return findByXpath("//*[@text='Sample action']");
     }
 
-    public AndroidElement getDateWidgetsMenu() {
+    public WebElement getDateWidgetsMenu() {
         return findByAccessibilityId("Date Widgets");
     }
 
-    public AndroidElement getInlineMenu() {
+    public WebElement getInlineMenu() {
         return findByAccessibilityId("2. Inline");
     }
 
-    public AndroidElement getSource() {
+    public WebElement getSource() {
         return findByAccessibilityId("12");
     }
 
-    public AndroidElement getTarget() {
+    public WebElement getTarget() {
         return findByAccessibilityId("3");
     }
 

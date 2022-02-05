@@ -1,29 +1,19 @@
 package com.tests;
 
-import com.driver.DriverFactory;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import com.driver.Driver;
 import org.testng.annotations.*;
-
-import java.util.Objects;
 
 
 public class BaseTest {
 
-    protected static AndroidDriver<AndroidElement> driver;
-
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
-        if(Objects.isNull(driver)) {
-            driver = DriverFactory.getDriver();
-        }
+        Driver.initDriver();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
-        if(Objects.nonNull(driver)) {
-            driver.quit();
-        }
+        Driver.quitDriver();
     }
 
 }

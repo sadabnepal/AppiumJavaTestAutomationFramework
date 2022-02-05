@@ -58,7 +58,6 @@ public class ElementStrategyTest extends BaseTest {
 
     @Test(priority = 4)
     public void findElementByUIAutomatorTest() {
-        openAppUsingPackage(AppPackages.LANDING_PAGE);
         waitForElementTobeClickable(findElementByText("App")).click();
         Assert.assertTrue(findElementByText("Action Bar").isDisplayed());
     }
@@ -66,7 +65,6 @@ public class ElementStrategyTest extends BaseTest {
     @Test(priority = 5)
     public void scrollElementTest() {
         APIDemoPage page = new APIDemoPage();
-        openAppUsingPackage(AppPackages.LANDING_PAGE);
         page.getViewMenu().click();
         scrollAndFindElementByText("ScrollBars").click();
         Assert.assertTrue(page.getBasicMenu().isDisplayed());
