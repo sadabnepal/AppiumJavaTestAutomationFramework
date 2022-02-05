@@ -1,13 +1,17 @@
 package com.utils;
 
 import com.constants.AppPackages;
-import com.driver.DriverFactory;
+import com.driver.Driver;
+import com.driver.DriverManager;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.android.Activity;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,52 +26,52 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 
 public class ElementUtils {
 
-    public static AndroidElement findByXpath(String xpath) {
-        return DriverFactory.driver.findElementByXPath(xpath);
+    public static WebElement findByXpath(String xpath) {
+        return DriverManager.getDriver().findElement(By.xpath(xpath));
     }
 
-    public static List<AndroidElement> findElementsByXpath(String xpath) {
-        return DriverFactory.driver.findElementsByXPath(xpath);
+    public static List<WebElement> findElementsByXpath(String xpath) {
+        return DriverManager.getDriver().findElements(By.xpath(xpath));
     }
 
-    public static AndroidElement findByAccessibilityId(String accessibilityId) {
-        return DriverFactory.driver.findElementByAccessibilityId(accessibilityId);
+    public static WebElement findByAccessibilityId(String accessibilityId) {
+        return DriverManager.getDriver().findElement(MobileBy.AccessibilityId(accessibilityId));
     }
 
     public static void openAppUsingPackage(String packageName) {
-        DriverFactory.driver.startActivity(new Activity(AppPackages.APP_PACKAGE, packageName));
+        ((AndroidDriver<?>) DriverManager.getDriver()).startActivity(new Activity(AppPackages.APP_PACKAGE, packageName));
     }
 
     public static WebElement waitForElementTobeClickable(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(DriverFactory.driver, 30L);
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 30L);
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static WebElement findElementByText(String text) {
-        return DriverFactory.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"" + text + "\")");
+        return ((AndroidDriver<?>) DriverManager.getDriver()).findElementByAndroidUIAutomator("new UiSelector().text(\"" + text + "\")");
     }
 
     public static WebElement findElementByTextContains(String partialText) {
-        return DriverFactory.driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"" + partialText + "\")");
+        return ((AndroidDriver<?>) DriverManager.getDriver()).findElementByAndroidUIAutomator("new UiSelector().textContains(\"" + partialText + "\")");
     }
 
     public static WebElement scrollAndFindElementByText(String text) {
-        return DriverFactory.driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"))");
+        return ((AndroidDriver<?>) DriverManager.getDriver()).findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"))");
     }
 
-    public static void tapOnElement(AndroidElement element) {
-        new AndroidTouchAction(DriverFactory.driver).tap(tapOptions().withElement(element(element))).perform();
+    public static void tapOnElement(WebElement element) {
+        new AndroidTouchAction((PerformsTouchActions) DriverManager.getDriver()).tap(tapOptions().withElement(element(element))).perform();
     }
 
-    public static void longPressOnElement(AndroidElement peopleNamesMenu, long duration) {
-        new AndroidTouchAction(DriverFactory.driver)
+    public static void longPressOnElement(WebElement peopleNamesMenu, long duration) {
+        new AndroidTouchAction((PerformsTouchActions) DriverManager.getDriver())
                 .longPress(longPressOptions().withElement(element(peopleNamesMenu)))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(duration)))
                 .perform();
     }
 
-    public static void moveElementFromSourceToTarget(AndroidElement source, AndroidElement target) {
-        new AndroidTouchAction(DriverFactory.driver)
+    public static void moveElementFromSourceToTarget(WebElement source, WebElement target) {
+        new AndroidTouchAction((PerformsTouchActions) DriverManager.getDriver())
                 .tap(TapOptions.tapOptions().withElement(ElementOption.element(source)))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
                 .moveTo(ElementOption.element(target))
