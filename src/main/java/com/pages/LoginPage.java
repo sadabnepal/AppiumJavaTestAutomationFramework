@@ -1,48 +1,48 @@
 package com.pages;
 
 import com.driver.DriverManager;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     public LoginPage() {
         PageFactory.initElements(new AppiumFieldDecorator(DriverManager.getDriver()), this);
     }
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView)[1]")
-    private static AndroidElement appLogo;
+    private static MobileElement appLogo;
 
     @AndroidFindBy(accessibility = "test-Username")
-    private static AndroidElement txtFieldUsername;
+    private static MobileElement txtFieldUsername;
 
     @AndroidFindBy(accessibility = "test-Password")
-    private static AndroidElement txtFieldPassword;
+    private static MobileElement txtFieldPassword;
 
     @AndroidFindBy(accessibility = "test-LOGIN")
-    private static AndroidElement btnLogin;
+    private static MobileElement btnLogin;
 
     @AndroidFindBy(xpath = "//*[@content-desc='test-Error message']/android.widget.TextView")
-    private static AndroidElement lockedErrorMessage;
+    private static MobileElement lockedErrorMessage;
 
     public boolean isAppLogoDisplayed() {
         return appLogo.isDisplayed();
     }
 
     public LoginPage setUsername(String username) {
-        txtFieldUsername.sendKeys(username);
+        enterData(txtFieldUsername, username, "username");
         return this;
     }
 
     public LoginPage setPassword(String password) {
-        txtFieldPassword.sendKeys(password);
+        enterData(txtFieldPassword, password, "password");
         return this;
     }
 
     public void clickOnLoginBtn() {
-        btnLogin.click();
+        clickElement(btnLogin, "Login button");
     }
 
     public String getErrorText() {

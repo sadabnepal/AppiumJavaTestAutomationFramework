@@ -20,9 +20,9 @@ public class BrowserStackImpl implements iDriverManager {
         capabilities.setCapability("project", "Appium Java Project");
         capabilities.setCapability("build", "Appium Android demo");
         capabilities.setCapability("name", "Mobile Tests");
-        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         capabilities.setCapability(MobileCapabilityType.APP, config.bs_app());
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         try {
             return new AndroidDriver<>(new URL("http://hub.browserstack.com/wd/hub"), capabilities);
         } catch (
