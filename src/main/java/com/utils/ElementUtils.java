@@ -1,11 +1,8 @@
 package com.utils;
 
-import com.constants.AppPackages;
-import com.driver.Driver;
 import com.driver.DriverManager;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.TapOptions;
@@ -38,9 +35,6 @@ public class ElementUtils {
         return DriverManager.getDriver().findElement(MobileBy.AccessibilityId(accessibilityId));
     }
 
-    public static void openAppUsingPackage(String packageName) {
-        ((AndroidDriver<?>) DriverManager.getDriver()).startActivity(new Activity(AppPackages.APP_PACKAGE, packageName));
-    }
 
     public static WebElement waitForElementTobeClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 30L);
