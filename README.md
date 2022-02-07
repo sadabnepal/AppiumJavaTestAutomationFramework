@@ -58,5 +58,9 @@ bs_app=<BROWSERSTACK_APP_PATH>
 
 ### Run Tests
 ```
+Run 'AppiumServer.bat' file to start appium on port 4723
 Right click on testng.xml file --> click on 'Run testng.xml'
 ```
+
+### Sample Report
+![sample_report.png](sample/sample_report.png)
