@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
     private static MobileElement lockedErrorMessage;
 
     public boolean isAppLogoDisplayed() {
-        return appLogo.isDisplayed();
+        return isElementDisplayed(appLogo);
     }
 
     public LoginPage setUsername(String username) {

@@ -1,10 +1,12 @@
 package com.tests;
 
+import com.facade.LoginFacade;
 import com.pages.LoginPage;
 import org.testng.annotations.Test;
 
 import static com.constants.DataConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class LoginTest extends BaseTest {
 
     @Test
@@ -21,10 +23,9 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 2)
     public void validLoginTest() {
-        boolean isProductPageDisplayed = new LoginPage()
-                .setUsername(VALID_USER)
-                .setPassword(LOGIN_PASSWORD)
-                .clickAndNavigateToProduct().isProductHeaderDisplayed();
+        boolean isProductPageDisplayed = new LoginFacade()
+                .navigateToProductPage(VALID_USER, LOGIN_PASSWORD)
+                .isProductHeaderDisplayed();
         assertThat(isProductPageDisplayed).isTrue();
     }
 }

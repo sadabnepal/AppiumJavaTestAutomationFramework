@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite" data-provider-thread-count="2">
-    <test thread-count="1" name="Test" parallel="methods">
+    <listeners>
+        <listener class-name="com.listeners.Listeners" />
+    </listeners>
+    <test thread-count="1" name="AppiumJavaFramework" parallel="methods">
         <classes>
-            <class name="com.tests.ElementStrategyTest" />
-            <class name="com.tests.MobileGestureTest" />
+            <class name="com.tests.LoginTest" />
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
