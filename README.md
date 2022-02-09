@@ -46,7 +46,7 @@ all options should be green checked as shown in below image to start.
 ![android_config.png](sample/android_config.png)
 
 
-#### Update properties file
+#### Update properties file [ for cloud only]
 File path: src/test/resources/configs/config.properties
 ```
 bs_user=<BROWSERSTACK_USER>
@@ -58,5 +58,9 @@ bs_app=<BROWSERSTACK_APP_PATH>
 
 ### Run Tests
 ```
+Run 'start-appium.bat' file to start appium on port 4723
 Right click on testng.xml file --> click on 'Run testng.xml'
 ```
+
+### Sample Report
+![sample_report.png](sample/sample_report.png)

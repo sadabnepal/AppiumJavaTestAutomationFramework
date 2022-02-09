@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductPage {
+public class ProductPage extends BasePage {
 
     public ProductPage() {
         PageFactory.initElements(new AppiumFieldDecorator(DriverManager.getDriver()), this);
@@ -16,6 +16,6 @@ public class ProductPage {
     private static MobileElement productPageHeader;
 
     public boolean isProductHeaderDisplayed() {
-        return productPageHeader.isDisplayed();
+        return isElementDisplayed(productPageHeader);
     }
 }
