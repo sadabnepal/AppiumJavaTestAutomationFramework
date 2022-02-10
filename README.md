@@ -29,7 +29,7 @@ npm i -g appium-doctor
 ```
 appium driver list
 ```
-Note: <i>uiautomator2 should be installed for android and xcuitest for ios. [Click here to check samle terminal log](sample/appium_driver_list.png) </i>
+Note: <i>uiautomator2 should be installed for android and xcuitest for ios. [Click here to check sample terminal log](sample/appium_driver_list.png) </i>
 
 
 If drivers are not installed then run below command as required:
@@ -42,7 +42,7 @@ appium driver install xcuitest [for ios]
 ```
 npm run android-doctor
 ```
-Note: <i>all options should be green checked as shown in below image to start.  [Click here to check samle terminal log](sample/android_config.png) </i>
+Note: <i>all options should be green checked as shown in below image to start.  [Click here to check sample terminal log](sample/android_config.png) </i>
 
 
 #### Update properties file [ only for cloud ]
