@@ -16,6 +16,12 @@ public interface FrameworkConfig extends Config {
 
     String mode();
 
+    String udid();
+
+    String DeviceID();
+
+    boolean autoLaunchEmulator();
+
     String bs_user();
 
     String bs_key();

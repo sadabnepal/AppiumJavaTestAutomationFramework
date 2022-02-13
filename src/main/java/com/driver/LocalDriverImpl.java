@@ -25,8 +25,13 @@ public class LocalDriverImpl implements iDriverManager {
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, config.DeviceName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, config.platformVersion());
+        capabilities.setCapability(MobileCapabilityType.UDID, config.udid());
         capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, AppPackages.APP_PACKAGE_SAUCELABS);
         capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, AppPackages.APP_ACTIVITY_SAUCELABS);
+        if(config.autoLaunchEmulator()) {
+            capabilities.setCapability("avd", config.DeviceID());
+            capabilities.setCapability("avdLaunchTimeout", 180000);
+        }
         try {
             return new AndroidDriver<>(new URL(config.baseurl() + ":" + config.port()), capabilities);
         } catch (MalformedURLException e) {
