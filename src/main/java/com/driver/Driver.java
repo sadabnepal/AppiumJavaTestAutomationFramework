@@ -1,7 +1,6 @@
 package com.driver;
 
-import static com.config.ConfigReader.*;
-
+import static com.config.ConfigFactory.*;
 import com.enums.RunMode;
 import org.openqa.selenium.WebDriver;
 
@@ -16,7 +15,7 @@ public class Driver {
 
     public static void initDriver() {
         if (Objects.isNull(getDriver())) {
-            RunMode runmode = RunMode.valueOf(config.mode().toUpperCase());
+            RunMode runmode = RunMode.valueOf(getConfig().mode().toUpperCase());
             WebDriver driver = DriverFactory.get(runmode);
             setDriver(driver);
         }

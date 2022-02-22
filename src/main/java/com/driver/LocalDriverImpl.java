@@ -1,6 +1,6 @@
 package com.driver;
 
-import static com.config.ConfigReader.*;
+import static com.config.ConfigFactory.*;
 
 import com.constants.AppPackages;
 import com.constants.PathConstants;
@@ -22,18 +22,18 @@ public class LocalDriverImpl implements iDriverManager {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.APP, PathConstants.ANDROID_APK_PATH);
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, config.DeviceName());
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, getConfig().DeviceName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, config.platformVersion());
-        capabilities.setCapability(MobileCapabilityType.UDID, config.udid());
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, getConfig().platformVersion());
+        capabilities.setCapability(MobileCapabilityType.UDID, getConfig().udid());
         capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, AppPackages.APP_PACKAGE_SAUCELABS);
         capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, AppPackages.APP_ACTIVITY_SAUCELABS);
-        if(config.autoLaunchEmulator()) {
-            capabilities.setCapability("avd", config.DeviceID());
+        if(getConfig().autoLaunchEmulator()) {
+            capabilities.setCapability("avd", getConfig().DeviceID());
             capabilities.setCapability("avdLaunchTimeout", 180000);
         }
         try {
-            return new AndroidDriver<>(new URL(config.baseurl() + ":" + config.port()), capabilities);
+            return new AndroidDriver<>(new URL(getConfig().baseurl() + ":" + getConfig().port()), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

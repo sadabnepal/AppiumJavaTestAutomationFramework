@@ -1,16 +1,9 @@
 package com.pages;
 
-import com.driver.DriverManager;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
-
-    public LoginPage() {
-        PageFactory.initElements(new AppiumFieldDecorator(DriverManager.getDriver()), this);
-    }
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView)[1]")
     private static MobileElement appLogo;
