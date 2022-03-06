@@ -39,19 +39,19 @@ public class BasePage {
         info(value + " is entered successfully in " + elementName);
     }
 
-    protected WebElement scrollAndFindElementByText(String text, String elementName) {
+    protected WebElement scrollAndFindAndroidElementByText(String text, String elementName) {
         info("Performing scroll and to find " + elementName + " by text");
         return ((AndroidDriver<?>) getDriver())
                 .findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"))");
     }
 
-    protected void tapElement(MobileElement element, String elementName) {
+    protected void tapAndroidElement(MobileElement element, String elementName) {
         new AndroidTouchAction((PerformsTouchActions) getDriver())
                 .tap(tapOptions().withElement(element(element))).perform();
         info("Tapped successfully on " + elementName);
     }
 
-    protected void longPress(MobileElement peopleNamesMenu, long duration, String elementName) {
+    protected void longPressAndroidElement(MobileElement peopleNamesMenu, long duration, String elementName) {
         new AndroidTouchAction((PerformsTouchActions) getDriver())
                 .longPress(longPressOptions().withElement(element(peopleNamesMenu)))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(duration)))
@@ -59,7 +59,7 @@ public class BasePage {
         info("Long pressed successfully on element " + elementName);
     }
 
-    protected void moveElement(MobileElement source, WebElement target) {
+    protected void moveAndroidElement(MobileElement source, WebElement target) {
         new AndroidTouchAction((PerformsTouchActions) getDriver())
                 .tap(TapOptions.tapOptions().withElement(ElementOption.element(source)))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
